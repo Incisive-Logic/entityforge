@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <PackageDescription>Semantic query, transaction, snapshot, and recovery orchestration. Shared durability belongs to EntityForge.Db.Kernel.</PackageDescription>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Telemetry/EntityForge.Db.Telemetry.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Core/EntityForge.Db.Semantic.Core.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Kernel/EntityForge.Db.Kernel.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage/EntityForge.Db.Storage.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Routing/EntityForge.Db.Routing.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Query/EntityForge.Db.Query.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Semantics.Protobuf/EntityForge.Semantics.Protobuf.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Query/EntityForge.Query.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Abstractions/EntityForge.Db.Semantic.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Durability.Abstractions/EntityForge.Db.Semantic.Durability.Abstractions.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Tests.WalkingSlice" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.LegacyHosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+        <InternalsVisibleTo Include="EntityForge.Db.Qualification" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj" />
+    </ItemGroup>
+</Project>

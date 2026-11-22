@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Server/EntityForge.Db.Server.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Recovery.Worker/EntityForge.Db.Recovery.Worker.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Semantic.Client/EntityForge.Db.Semantic.Client.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Durability.Abstractions/EntityForge.Db.Durability.Abstractions.csproj" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="MSTest" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Semantic.Durability.Abstractions/EntityForge.Db.Semantic.Durability.Abstractions.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Hosting/EntityForge.Db.Hosting.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Transport.Contracts/EntityForge.Db.Transport.Contracts.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Kernel/EntityForge.Db.Kernel.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Graph/EntityForge.Db.Graph.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Rdf/EntityForge.Db.Rdf.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Rdf.Contracts/EntityForge.Db.Rdf.Contracts.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Routing/EntityForge.Db.Routing.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed/EntityForge.Db.Distributed.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+        <Using Include="EntityForge.Db.Storage.Pages" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="Fixtures\**\*" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="../../../docs/db/PROFILE_GRAPHQL_DESIGN.md" Link="GraphQlDesign/PROFILE_GRAPHQL_DESIGN.md" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="../../../docs/db/SEMANTIC_GRAPHQL_DESIGN.md" Link="GraphQlDesign/SEMANTIC_GRAPHQL_DESIGN.md" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="../../../docs/db/SEMANTIC_GRAPHQL_SCHEMA.graphql" Link="GraphQlDesign/SEMANTIC_GRAPHQL_SCHEMA.graphql" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="PublicApiBaseline.txt" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="SemanticPublicApiBaseline.txt" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="PublicMemberApiBaseline.txt" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="PublicMemberApiSurface.txt" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="EntityForge.Db.Distributed.Hosting" />
+        <Using Include="EntityForge.Db.Distributed.Sharding" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Gql/EntityForge.Db.Gql.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Semantic.Query/EntityForge.Db.Semantic.Query.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Query.Adapters/EntityForge.Db.Query.Adapters.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed.Contracts/EntityForge.Db.Distributed.Contracts.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed.Client/EntityForge.Db.Distributed.Client.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed.Hosting/EntityForge.Db.Distributed.Hosting.csproj" />
+    </ItemGroup>
+</Project>

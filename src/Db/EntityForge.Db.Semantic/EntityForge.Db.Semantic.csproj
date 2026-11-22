@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>
+        <PackageDescription>EntityForgeDB embedded semantic profile with owned local storage composition.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Durability.Abstractions/EntityForge.Db.Durability.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Kernel/EntityForge.Db.Kernel.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage/EntityForge.Db.Storage.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage.Local/EntityForge.Db.Storage.Local.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage.Composition/EntityForge.Db.Storage.Composition.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage.Pages/EntityForge.Db.Storage.Pages.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Engine/EntityForge.Db.Semantic.Engine.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Routing/EntityForge.Db.Routing.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Telemetry/EntityForge.Db.Telemetry.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Semantics.Protobuf/EntityForge.Semantics.Protobuf.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Abstractions/EntityForge.Db.Semantic.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Durability.Abstractions/EntityForge.Db.Semantic.Durability.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Client/EntityForge.Db.Client.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Transport.Contracts/EntityForge.Db.Transport.Contracts.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.LegacyHosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Tests.WalkingSlice" />
+        <InternalsVisibleTo Include="EntityForge.Db.Qualification" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Semantic.Client/EntityForge.Db.Semantic.Client.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Query" />
+    </ItemGroup>
+</Project>

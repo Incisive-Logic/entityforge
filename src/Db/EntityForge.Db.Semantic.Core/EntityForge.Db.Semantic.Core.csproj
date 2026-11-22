@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <PackageDescription>Semantic canonical state, source membership reconciliation, and transaction validation. Not a shared database kernel.</PackageDescription>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.AccessPaths/EntityForge.Db.AccessPaths.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Abstractions/EntityForge.Db.Semantic.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Durability.Abstractions/EntityForge.Db.Semantic.Durability.Abstractions.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Engine" />
+        <InternalsVisibleTo Include="EntityForge.Db.Query" />
+        <InternalsVisibleTo Include="EntityForge.Db.Tests.WalkingSlice" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,40 @@
+{
+  "upstream": "dotnetrdf/dotnetrdf",
+  "version": "3.5.2",
+  "commit": "67142d12e67fb68b37d009c3579ddebaeb4ff2c1",
+  "files": [
+    {
+      "file": "ContextProcessor.cs",
+      "source": "https://raw.githubusercontent.com/dotnetrdf/dotnetrdf/67142d12e67fb68b37d009c3579ddebaeb4ff2c1/Libraries/dotNetRdf.Core/JsonLd/Processors/ContextProcessor.cs"
+    },
+    {
+      "file": "ExpandProcessor.cs",
+      "source": "https://raw.githubusercontent.com/dotnetrdf/dotnetrdf/67142d12e67fb68b37d009c3579ddebaeb4ff2c1/Libraries/dotNetRdf.Core/JsonLd/Processors/ExpandProcessor.cs"
+    },
+    {
+      "file": "JsonLdUtils.cs",
+      "source": "https://raw.githubusercontent.com/dotnetrdf/dotnetrdf/67142d12e67fb68b37d009c3579ddebaeb4ff2c1/Libraries/dotNetRdf.Core/JsonLd/Processors/JsonLdUtils.cs"
+    },
+    {
+      "file": "ProcessorBase.cs",
+      "source": "https://raw.githubusercontent.com/dotnetrdf/dotnetrdf/67142d12e67fb68b37d009c3579ddebaeb4ff2c1/Libraries/dotNetRdf.Core/JsonLd/Processors/ProcessorBase.cs"
+    },
+    {
+      "file": "JsonLdRdfConverter.cs",
+      "source": "https://raw.githubusercontent.com/dotnetrdf/dotnetrdf/67142d12e67fb68b37d009c3579ddebaeb4ff2c1/Libraries/dotNetRdf.Core/Parsing/JsonLdParser.cs"
+    },
+    {
+      "file": "JsonLiteralSerializer.cs",
+      "source": "https://raw.githubusercontent.com/dotnetrdf/dotnetrdf/67142d12e67fb68b37d009c3579ddebaeb4ff2c1/Libraries/dotNetRdf.Core/JsonLd/JsonLiteralSerializer.cs"
+    }
+  ],
+  "changes": [
+    "Private namespace and explicit imports; nullable disabled to match upstream",
+    "Absolute IRI validation delegates to EntityForge RDF contracts",
+    "Scoped obsolete-warning suppression retains upstream relative IRI helpers",
+    "Local context base IRIs retained verbatim and resolved with the shared native IRI resolver",
+    "RDF conversion accepts expanded JArray directly; file/reader/store entrypoints removed; JSON literal serializer retained",
+    "Protected term equality includes language mapping and scoped context",
+    "JSON literal numbers delegate to the EntityForge binary64 canonical number formatter"
+  ]
+}

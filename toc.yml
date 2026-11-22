@@ -1,0 +1,30 @@
+- name: Overview
+  href: index.md
+- name: FAQ
+  href: docs/faq.md
+- name: DB guide
+  href: docs/user/database.md
+- name: Studio guide
+  href: docs/user/studio.md
+- name: First .NET application
+  href: docs/user/dotnet-quickstart.md
+- name: Studio queries
+  href: docs/user/studio-queries.md
+- name: Query language support
+  href: docs/user/query-languages.md
+- name: Studio operations
+  href: docs/user/studio-operations.md
+- name: Observability
+  href: docs/user/observability.md
+- name: Deployment
+  href: docs/user/deployment.md
+- name: Architecture
+  href: docs/developer/architecture.md
+- name: Development
+  href: docs/developer/README.md
+- name: Query compatibility tests
+  href: docs/developer/query-compatibility.md
+- name: API reference
+  href: artifacts/docs/api/toc.yml
+- name: Licensing
+  href: LICENSING.md

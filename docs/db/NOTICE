@@ -1,0 +1,8 @@
+EntityForgeDB
+Copyright 2026 MetaCore Systems
+
+This product includes software developed by MetaCore Systems and contributors.
+
+Optional distributed decision-authority support uses:
+- etcd, Apache License 2.0 (deployed as an external service)
+- dotnet-etcd, MIT License (native .NET gRPC client)

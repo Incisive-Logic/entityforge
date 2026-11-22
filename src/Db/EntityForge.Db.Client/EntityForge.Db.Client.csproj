@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageDescription>Transport-neutral and HTTP .NET client contracts for EntityForgeDB entity documents.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Tests.WalkingSlice" />
+        <InternalsVisibleTo Include="EntityForge.Db.Qualification" />
+        <InternalsVisibleTo Include="EntityForge.Db.Graph.Client" />
+        <InternalsVisibleTo Include="EntityForge.Db.Rdf.Client" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Client" />
+        <ProjectReference Include="../EntityForge.Db.Transport.Contracts/EntityForge.Db.Transport.Contracts.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Query.Planning/EntityForge.Db.Query.Planning.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Query/EntityForge.Query.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Semantics/EntityForge.Semantics.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.LegacyHosting.Tests" />
+    </ItemGroup>
+</Project>

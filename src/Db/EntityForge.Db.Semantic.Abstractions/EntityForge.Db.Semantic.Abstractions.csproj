@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageDescription>Representation-neutral EntityForgeDB semantic queries, evidence, catalogs, governance and change contracts.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Semantics/EntityForge.Semantics.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Query/EntityForge.Query.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Core" />
+        <InternalsVisibleTo Include="EntityForge.Db.Query" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Engine" />
+        <InternalsVisibleTo Include="EntityForge.Db.Tests.WalkingSlice" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Client" />
+    </ItemGroup>
+</Project>

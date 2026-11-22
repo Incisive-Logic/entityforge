@@ -1,0 +1,27 @@
+<Project>
+    <Import Project="..\..\Directory.Packages.props" Condition="Exists('..\..\Directory.Packages.props')" />
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageVersion Include="Antlr4.Runtime.Standard" Version="4.13.1" />
+        <PackageVersion Include="NodaTime" Version="3.3.7" />
+        <PackageVersion Include="AngleSharp" Version="1.5.0" />
+        <PackageVersion Include="GraphQL-Parser" Version="9.5.1" />
+        <PackageVersion Include="HotChocolate.Execution" Version="15.1.17" />
+        <PackageVersion Include="HotChocolate.Types" Version="15.1.17" />
+        <PackageVersion Include="dotnet-etcd" Version="9.1.0" />
+        <PackageVersion Include="dotNetRdf.Core" Version="3.5.2" />
+        <PackageVersion Include="dotNetRdf.Shacl" Version="3.5.2" />
+        <PackageVersion Include="dotNetRdf.Inferencing" Version="3.5.2" />
+        <PackageVersion Include="BrightstarDBLibs" Version="1.13.3" />
+        <PackageVersion Include="Google.Protobuf" Version="3.35.1" />
+        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+        <PackageVersion Include="MSTest" Version="3.9.3" />
+        <PackageVersion Include="OpenTelemetry" Version="1.17.0" />
+        <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.17.0" />
+        <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.17.0" />
+        <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.17.0" />
+    </ItemGroup>
+</Project>

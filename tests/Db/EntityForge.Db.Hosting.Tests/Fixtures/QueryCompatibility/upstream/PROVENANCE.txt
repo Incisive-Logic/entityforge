@@ -1,0 +1,7 @@
+Selected regression inputs from https://github.com/w3c/rdf-tests
+Pinned revision: 4158bca195a29fe1fd90f92698170bc7cc385273
+Source directory: sparql/sparql10/basic
+Original query, data and expected-result files are unmodified.
+The cases.json selection and runner are EntityForge-owned.
+Upstream files retain their original dual licence; this development subset uses the 3-clause BSD option.
+See LICENSE.md and LICENSE-BSD.html. No W3C endorsement or standards-conformance claim is made.

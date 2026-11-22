@@ -1,0 +1,115 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "src/Db/EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj",
+            "src/Db/EntityForge.Db.Client/EntityForge.Db.Client.csproj",
+            "src/Db/EntityForge.Db.Semantic.Abstractions/EntityForge.Db.Semantic.Abstractions.csproj",
+            "src/Db/EntityForge.Db.Semantic.Client/EntityForge.Db.Semantic.Client.csproj",
+            "src/Db/EntityForge.Db.Semantic/EntityForge.Db.Semantic.csproj",
+            "src/Db/EntityForge.Db.Graph.Contracts/EntityForge.Db.Graph.Contracts.csproj",
+            "src/Db/EntityForge.Db.Graph.Client/EntityForge.Db.Graph.Client.csproj",
+            "src/Db/EntityForge.Db.Graph/EntityForge.Db.Graph.csproj",
+            "src/Db/EntityForge.Db.Rdf.Contracts/EntityForge.Db.Rdf.Contracts.csproj",
+            "src/Db/EntityForge.Db.Rdf.Client/EntityForge.Db.Rdf.Client.csproj",
+            "src/Db/EntityForge.Db.Rdf/EntityForge.Db.Rdf.csproj",
+            "src/Db/EntityForge.Db.Hosting/EntityForge.Db.Hosting.csproj",
+            "src/Db/EntityForge.Db.Telemetry/EntityForge.Db.Telemetry.csproj",
+            "src/Db/EntityForge.Db.Transport.Contracts/EntityForge.Db.Transport.Contracts.csproj",
+            "src/Shared/EntityForge.Query/EntityForge.Query.csproj",
+            "src/Shared/EntityForge.Semantics/EntityForge.Semantics.csproj",
+            "src/Shared/EntityForge.Values/EntityForge.Values.csproj",
+            "src/Db/EntityForge.Db.Kernel/EntityForge.Db.Kernel.csproj",
+            "src/Db/EntityForge.Db.AccessPaths/EntityForge.Db.AccessPaths.csproj",
+            "src/Db/EntityForge.Db.Distributed/EntityForge.Db.Distributed.csproj",
+            "src/Db/EntityForge.Db.Gql/EntityForge.Db.Gql.csproj",
+            "src/Db/EntityForge.Db.Distributed.Contracts/EntityForge.Db.Distributed.Contracts.csproj",
+            "src/Db/EntityForge.Db.Distributed.Client/EntityForge.Db.Distributed.Client.csproj",
+            "src/Db/EntityForge.Db.Distributed.Hosting/EntityForge.Db.Distributed.Hosting.csproj",
+            "src/Db/EntityForge.Db.Durability.Abstractions/EntityForge.Db.Durability.Abstractions.csproj",
+            "src/Db/EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj",
+            "src/Db/EntityForge.Db.Query/EntityForge.Db.Query.csproj",
+            "src/Db/EntityForge.Db.Query.Planning/EntityForge.Db.Query.Planning.csproj",
+            "src/Db/EntityForge.Db.Routing/EntityForge.Db.Routing.csproj",
+            "src/Db/EntityForge.Db.Semantic.Core/EntityForge.Db.Semantic.Core.csproj",
+            "src/Db/EntityForge.Db.Semantic.Durability.Abstractions/EntityForge.Db.Semantic.Durability.Abstractions.csproj",
+            "src/Db/EntityForge.Db.Semantic.Engine/EntityForge.Db.Semantic.Engine.csproj",
+            "src/Db/EntityForge.Db.Storage/EntityForge.Db.Storage.csproj",
+            "src/Db/EntityForge.Db.Storage.Local/EntityForge.Db.Storage.Local.csproj",
+            "src/Db/EntityForge.Db.Storage.Pages/EntityForge.Db.Storage.Pages.csproj",
+            "src/Shared/EntityForge.Cqrs/EntityForge.Cqrs.csproj",
+            "src/Shared/EntityForge.Semantics.Protobuf/EntityForge.Semantics.Protobuf.csproj",
+            "src/Shared/EntityForge.Telemetry/EntityForge.Telemetry.csproj",
+            "src/Shared/EntityForge.Utility/EntityForge.Utility.csproj",
+            "src/AppModel/EntityForge.Db.AppModel/EntityForge.Db.AppModel.csproj"
+          ]
+        }
+      ],
+      "dest": "artifacts/docs/api",
+      "disableGitFeatures": true,
+      "memberLayout": "separatePages",
+      "properties": {
+        "Configuration": "Release"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "README.md",
+          "CHANGELOG.md",
+          "SECURITY.md",
+          "CONTRIBUTING.md",
+          "CODE_OF_CONDUCT.md",
+          "index.md",
+          "LICENSING.md",
+          "THIRD-PARTY-NOTICES.md",
+          "toc.yml",
+          "docs/**/*.md",
+          "docs/db/*.md",
+          "src/Shared/**/*.md"
+        ]
+      },
+      {
+        "files": [
+          "**/*.yml"
+        ],
+        "src": "artifacts/docs/api",
+        "dest": "api"
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "License.md",
+          "Version.props",
+          ".editorconfig",
+          ".gitattributes",
+          "docs/images/**",
+          "src/Shared/EntityForge.UI.Avalonia/Assets/Brand/entity-forge-mark-128.png",
+          "docs/db/LICENSE",
+          "docs/db/NOTICE",
+          "src/Db/EntityForge.Db.Query.Syntax/Gql/NOTICE.txt",
+          "src/Db/EntityForge.Db.Query.Syntax/Gql/LICENSE.txt",
+          "docs/db/*.graphql"
+        ]
+      }
+    ],
+    "dest": "artifacts/docs/site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "EntityForge",
+      "_appTitle": "EntityForge DB and Studio",
+      "_enableSearch": true,
+      "_disableContribution": true
+    },
+    "sitemap": {},
+    "disableGitFeatures": true
+  }
+}

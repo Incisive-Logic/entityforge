@@ -1,0 +1,6 @@
+<Project>
+    <Import Project="../../../Directory.Packages.props" />
+    <ItemGroup>
+        <PackageVersion Include="GraphQL-Parser" Version="9.5.1" />
+    </ItemGroup>
+</Project>

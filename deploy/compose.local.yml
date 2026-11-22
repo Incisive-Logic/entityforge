@@ -1,0 +1,24 @@
+# Local evaluation only: public example credential, loopback port, HTTP.
+services:
+  entityforge:
+    build:
+      context: ..
+      dockerfile: src/Db/EntityForge.Db.Server/Dockerfile
+    image: entityforge:local
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      ENTITYFORGE_DB_PROFILE: semantic
+      ENTITYFORGE_DB_ADMIN_TOKEN: entityforge-local-example-token-not-for-production
+      ENTITYFORGE_DB_REQUIRE_HTTPS: "false"
+    volumes:
+      - entityforge-data:/var/lib/entityforge
+volumes:
+  entityforge-data:

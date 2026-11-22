@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageDescription>Profile-independent bounded query-language syntax infrastructure for EntityForgeDB.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Antlr4.Runtime.Standard" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <None Include="../EntityForge.Db.Query.Planning/Unicode/LICENSE.txt" Link="licenses/Unicode-LICENSE.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Pack="true" PackagePath="licenses/Unicode-LICENSE.txt" />
+        <None Update="Gql/NOTICE.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" TargetPath="licenses/opengql/NOTICE.txt" Pack="true" PackagePath="licenses/opengql/NOTICE.txt" />
+        <None Update="Gql/LICENSE.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" TargetPath="licenses/opengql/LICENSE.txt" Pack="true" PackagePath="licenses/opengql/LICENSE.txt" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Gql" />
+    </ItemGroup>
+</Project>

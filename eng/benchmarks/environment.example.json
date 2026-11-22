@@ -1,0 +1,10 @@
+{
+  "classification": "controlled",
+  "machineId": "replace-with-a-stable-non-secret-machine-label",
+  "cpu": "replace-with-model-and-power-policy",
+  "memory": "replace-with-installed-memory-and-container-limit",
+  "storage": "replace-with-device-filesystem-and-mount-options",
+  "storageConfiguration": "replace-with-filesystem-durability-cache-and-volume-configuration",
+  "backgroundLoad": "replace-with-concurrent-services-and-load-controls",
+  "topology": "replace-with-selected-deployments-process-placement-and-etcd-version-if-used"
+}

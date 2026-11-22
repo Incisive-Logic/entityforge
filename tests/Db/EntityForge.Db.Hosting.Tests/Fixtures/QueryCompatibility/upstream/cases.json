@@ -1,0 +1,44 @@
+[
+  {
+    "query": "quotes-1.rq",
+    "id": "quotes-1",
+    "result": "quotes-1.srx",
+    "data": "data-3.ttl"
+  },
+  {
+    "query": "quotes-2.rq",
+    "id": "quotes-2",
+    "result": "quotes-2.srx",
+    "data": "data-3.ttl"
+  },
+  {
+    "query": "quotes-3.rq",
+    "id": "quotes-3",
+    "result": "quotes-3.srx",
+    "data": "data-3.ttl"
+  },
+  {
+    "query": "quotes-4.rq",
+    "id": "quotes-4",
+    "result": "quotes-4.srx",
+    "data": "data-3.ttl"
+  },
+  {
+    "query": "spoo-1.rq",
+    "id": "spoo-1",
+    "result": "spoo-1.srx",
+    "data": "data-6.ttl"
+  },
+  {
+    "query": "bgp-no-match.rq",
+    "id": "bgp-no-match",
+    "result": "bgp-no-match.srx",
+    "data": "data-7.ttl"
+  },
+  {
+    "query": "prefix-name-1.rq",
+    "id": "prefix-name-1",
+    "result": "prefix-name-1.srx",
+    "data": "data-6.ttl"
+  }
+]

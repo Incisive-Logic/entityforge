@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Your first knowledge model · EntityForge</title>
+  <style>
+    :root{color-scheme:dark;font:16px/1.6 system-ui,sans-serif;background:#101216;color:#edf1f7}*{box-sizing:border-box}body{max-width:1080px;margin:auto;padding:36px 24px 80px}a{color:#8ebcff}header{border-bottom:1px solid #303743;padding-bottom:28px}.brand{color:#8ebcff;font-weight:700;letter-spacing:.1em;font-size:13px}h1{font-size:clamp(30px,5vw,50px);line-height:1.1;letter-spacing:-.03em;margin:18px 0}h2{font-size:23px;margin:0 0 8px}p{max-width:780px}.muted{color:#aab6c9}.button,button{display:inline-block;background:#0057e6;color:white;border:1px solid #3881ff;border-radius:8px;padding:11px 18px;font:600 15px system-ui;text-decoration:none;cursor:pointer}button:disabled{opacity:.5;cursor:wait}a:focus-visible,button:focus-visible{outline:3px solid #b6d5ff;outline-offset:4px}section{background:#181c22;border:1px solid #303743;border-radius:12px;padding:24px;margin-top:22px}.number{color:#8ebcff}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#101216;padding:16px;border-radius:8px;font:13px/1.6 ui-monospace,monospace}summary{cursor:pointer;color:#aab6c9;margin-top:16px}table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px}td,th{padding:10px;text-align:left;border-bottom:1px solid #303743;overflow-wrap:anywhere}th{color:#aab6c9}.results{overflow:auto}output{display:block;margin-top:12px}.error{color:#ffb5b5}code{color:#c5dcff}footer{margin-top:28px}
+  </style>
+  <script type="module" src="demo.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">ENTITYFORGE · SEMANTIC QUICK START</div>
+    <h1>Your first knowledge model.<br />Already filled with things to discover.</h1>
+    <p>Ada and Sam work at Northstar Lab. The staff directory and project office describe their world differently. Explore how EntityForge brings those facts together while keeping their meaning and sources.</p>
+    <p><a class="button" id="studio" href="./">Open in Studio →</a></p>
+    <p class="muted">Synthetic data · Local sample · Read-only access · About five minutes</p>
+    <output id="connection" aria-live="polite">Connecting to your sample…</output>
+  </header>
+  <main id="tour"></main>
+  <section>
+    <h2>Explore freely in Studio</h2>
+    <p>Open Studio above: the connection is ready for you. In <strong>Builder</strong>, set <strong>Find</strong> to <strong>Person</strong>. Open <strong>Return</strong>, check <strong>All Properties</strong>, and select <strong>Run Query</strong>. You should see four people, including Ada with both job titles. Keep <strong>Include evidence</strong> checked and use <strong>Inspect Evidence</strong> on Ada’s result to explore the source assertions.</p>
+    <p>For the exact examples here, expand <strong>Show query</strong>, copy a GraphQL query, then use Studio’s <strong>GraphQL</strong> mode. Native Semantic GQL and SPARQL are available in this tour and over HTTP; Studio’s Semantic editor currently offers Builder and GraphQL.</p>
+  </section>
+  <footer class="muted">This sample is rebuilt from source data on every launch and removed on normal shutdown. Stop the server with Ctrl+C. The sample does not open or alter your existing databases. Keep the launch link local: it contains temporary read access.</footer>
+</body>
+</html>

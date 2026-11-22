@@ -1,0 +1,345 @@
+[
+  {
+    "id": "named",
+    "query": "MATCH (n:Person) RETURN n",
+    "count": 3
+  },
+  {
+    "id": "anonymous-edge",
+    "query": "MATCH (n:Person)-[:knows]->() RETURN n",
+    "count": 2
+  },
+  {
+    "id": "bare-edge",
+    "query": "MATCH (n:Person)->() RETURN n",
+    "count": 2
+  },
+  {
+    "id": "anonymous-source",
+    "query": "MATCH ()-[:knows]->(n:Person) RETURN n",
+    "count": 2
+  },
+  {
+    "id": "return-star",
+    "query": "MATCH (n:Person)-[:knows]->(m) RETURN *",
+    "count": 2
+  },
+  {
+    "id": "anonymous-count",
+    "query": "MATCH (:Person) RETURN COUNT(*) AS total",
+    "count": 1,
+    "variable": "total",
+    "value": 3
+  },
+  {
+    "id": "missing-property",
+    "query": "MATCH (n:Person) WHERE n.age IS NULL RETURN n",
+    "count": 1
+  },
+  {
+    "id": "present-property",
+    "query": "MATCH (n:Person) WHERE n.age IS NOT NULL RETURN n",
+    "count": 2
+  },
+  {
+    "id": "missing-binding",
+    "query": "MATCH (n:Person) OPTIONAL MATCH (n)-[:missing]->(m) WHERE m IS NULL RETURN n",
+    "count": 3
+  },
+  {
+    "id": "present-binding",
+    "query": "MATCH (n:Person) WHERE n IS NOT NULL RETURN n",
+    "count": 3
+  },
+  {
+    "id": "unknown-under-not",
+    "query": "MATCH (n:Person) WHERE NOT n.age = 10 RETURN n",
+    "count": 1
+  },
+  {
+    "id": "unknown-or-true",
+    "query": "MATCH (n:Person) WHERE n.age = 10 OR n.age IS NULL RETURN n",
+    "count": 2
+  },
+  {
+    "id": "unknown-and-false",
+    "query": "MATCH (n:Person) WHERE NOT (n.age = 10 OR n.age IS NULL) RETURN n",
+    "count": 1
+  },
+  {
+    "id": "quoted-keywords",
+    "query": "MATCH (n:Person) WHERE n.name = 'RETURN WHERE SET, O''Brien' RETURN n",
+    "count": 1
+  },
+  {
+    "id": "quoted-projection-comma",
+    "query": "MATCH (n:Person) RETURN 'a,b RETURN ignored' AS text",
+    "count": 3,
+    "variable": "text",
+    "value": "a,b RETURN ignored"
+  },
+  {
+    "id": "quoted-projection-escape",
+    "query": "MATCH (n:Person) RETURN 'line\\nnext' AS text",
+    "count": 3,
+    "variable": "text",
+    "value": "line\nnext"
+  },
+  {
+    "id": "numeric-sum",
+    "query": "MATCH (n:Person) RETURN SUM(n.age) AS total",
+    "count": 1,
+    "variable": "total",
+    "value": 30
+  },
+  {
+    "id": "empty-count",
+    "query": "MATCH (n:Absent) RETURN COUNT(*) AS total",
+    "count": 1,
+    "variable": "total",
+    "value": 0
+  },
+  {
+    "id": "paging",
+    "query": "MATCH (n:Person) RETURN n ORDER BY n.age OFFSET 1 LIMIT 1",
+    "count": 1
+  },
+  {
+    "id": "finite-path",
+    "query": "MATCH (n:Person)-[r:knows]->{1,2}(m) RETURN m",
+    "count": 3
+  },
+  {
+    "query": "MATCH (n:Person) WHERE n.age = 10 XOR n.age = 20 RETURN n",
+    "count": 2,
+    "id": "xor-one"
+  },
+  {
+    "query": "MATCH (n:Person) WHERE n.age > 5 XOR n.age < 30 RETURN n",
+    "count": 0,
+    "id": "xor-both"
+  },
+  {
+    "query": "MATCH (n:Person) WHERE n.age = 10 XOR n.missing = 1 RETURN n",
+    "count": 0,
+    "id": "xor-null"
+  },
+  {
+    "query": "MATCH (n:Person) WHERE UPPER(n.name) = 'BOB' RETURN n",
+    "id": "where-function",
+    "count": 1
+  },
+  {
+    "query": "MATCH (n:Person) WHERE COALESCE(n.age, 0)+1 > 15 RETURN n",
+    "id": "where-arithmetic",
+    "count": 1
+  },
+  {
+    "query": "MATCH (n:Person) WHERE n.age = n.age RETURN n",
+    "id": "where-property-comparison",
+    "count": 2
+  },
+  {
+    "query": "MATCH (n:Person) WHERE CASE WHEN n.age IS NULL THEN true ELSE false END RETURN n",
+    "id": "where-case",
+    "count": 1
+  },
+  {
+    "query": "MATCH (n:Person) WHERE NULLIF(n.age, 10) IS NULL RETURN n",
+    "id": "where-nullif",
+    "count": 2
+  },
+  {
+    "query": "MATCH (n:Person) WHERE RIGHT(n.name, 3) = 'rol' RETURN n",
+    "id": "where-string-function",
+    "count": 1
+  },
+  {
+    "query": "MATCH (n:Person) WHERE NOT UPPER(n.name) = 'BOB' RETURN n",
+    "id": "where-not-function",
+    "count": 2
+  },
+  {
+    "query": "MATCH (n:Person) WHERE true RETURN n",
+    "id": "where-true",
+    "count": 3
+  },
+  {
+    "query": "MATCH (n:Person) WHERE false RETURN n",
+    "id": "where-false",
+    "count": 0
+  },
+  {
+    "query": "MATCH (n:Person) WHERE NULL RETURN n",
+    "id": "where-null",
+    "count": 0
+  },
+  {
+    "query": "MATCH (n:Person) WHERE LOWER(n.name) = 'bob' RETURN COALESCE(n.age, 1) AS answer",
+    "variable": "answer",
+    "value": 20,
+    "id": "where-predicate-projection",
+    "count": 1
+  },
+  {
+    "value": -20,
+    "count": 1,
+    "variable": "score",
+    "id": "computed-order-ascending",
+    "query": "MATCH (n:Person) RETURN COALESCE(n.age,0)*-1 AS score ORDER BY score LIMIT 1"
+  },
+  {
+    "value": 0,
+    "count": 1,
+    "variable": "score",
+    "id": "computed-order-descending",
+    "query": "MATCH (n:Person) RETURN COALESCE(n.age,0)*-1 AS score ORDER BY score DESC LIMIT 1"
+  },
+  {
+    "value": -10,
+    "count": 1,
+    "variable": "score",
+    "id": "computed-order-offset",
+    "query": "MATCH (n:Person) RETURN COALESCE(n.age,0)*-1 AS score ORDER BY score OFFSET 1 LIMIT 1"
+  },
+  {
+    "id": "computed-order-multiple",
+    "value": 21,
+    "count": 1,
+    "query": "MATCH (n:Person) RETURN 1 AS fixedNumber, COALESCE(n.age,0)+1 AS score ORDER BY fixedNumber ASC, score DESC LIMIT 1",
+    "variable": "score"
+  },
+  {
+    "id": "computed-order-multiple-offset",
+    "value": 11,
+    "count": 1,
+    "query": "MATCH (n:Person) RETURN 1 AS fixedNumber, COALESCE(n.age,0)+1 AS score ORDER BY fixedNumber DESC, score ASC OFFSET 1 LIMIT 1",
+    "variable": "score"
+  },
+  {
+    "count": 1,
+    "query": "MATCH (n:Person {age:20, name: 'Bob'}) RETURN n",
+    "id": "inline-properties"
+  },
+  {
+    "count": 1,
+    "query": "MATCH (n:Person)-[r:knows]->(m:Person {name: 'Bob'}) RETURN m",
+    "id": "inline-properties-target"
+  },
+  {
+    "count": 0,
+    "query": "MATCH (n:Person {age:NULL}) RETURN n",
+    "id": "inline-null-no-match"
+  },
+  {
+    "count": 0,
+    "query": "MATCH (n:Person&Missing) RETURN n",
+    "id": "multiple-labels-conjunction"
+  },
+  {
+    "count": 3,
+    "query": "MATCH (n:Person {}) RETURN n",
+    "error": true,
+    "id": "inline-properties-empty"
+  },
+  {
+    "count": 2,
+    "query": "MATCH (n:Person)-[r:knows]->(m) WHERE r.missing IS NULL RETURN r",
+    "id": "edge-null-predicate"
+  },
+  {
+    "count": 2,
+    "query": "MATCH (n:Person)-[r:knows]->(m) WHERE COALESCE(r.missing,1)=1 RETURN r",
+    "id": "edge-scalar-filter"
+  },
+  {
+    "count": 0,
+    "query": "MATCH (n:Person)-[r:knows]->(m) WHERE r.missing=1 RETURN r",
+    "id": "edge-comparison-unknown"
+  },
+  {
+    "count": 3,
+    "query": "MATCH (n:Person) OPTIONAL MATCH (n)-[r:knows]->(m) WHERE r IS NULL RETURN n",
+    "id": "optional-edge-is-null"
+  },
+  {
+    "query": "MATCH (n:Person) RETURN DISTINCT COALESCE(n.age,10) AS age ORDER BY age OFFSET 1 LIMIT 1",
+    "variable": "age",
+    "value": 20,
+    "id": "scalar-distinct-before-limit",
+    "count": 1
+  },
+  {
+    "query": "MATCH (n:Person) RETURN DISTINCT n.missing AS answer",
+    "variable": "answer",
+    "value": null,
+    "id": "scalar-distinct-null",
+    "count": 1
+  },
+  {
+    "query": "MATCH (n:Person) RETURN DISTINCT CASE WHEN n.age=20 THEN '1' ELSE 1 END AS answer",
+    "id": "scalar-distinct-types",
+    "count": 2
+  },
+  {
+    "query": "MATCH (n:Person) RETURN DISTINCT CASE WHEN n.age=20 THEN 1.0 ELSE 1 END AS answer",
+    "variable": "answer",
+    "value": 1,
+    "id": "scalar-distinct-numeric",
+    "count": 1
+  },
+  {
+    "query": "MATCH (n:Person) WHERE n.age IS TYPED INTEGER NOT NULL RETURN n",
+    "id": "where-type-predicate",
+    "count": 2
+  },
+  {
+    "query": "/* WHERE '' */ MATCH (n:Person) // ignored RETURN\n WHERE n.age = 20 /* '*/ RETURN n",
+    "count": 1,
+    "id": "comments"
+  },
+  {
+    "query": "MATCH (n:Person) RETURN n.age AS answer ORDER BY answer OFFSET 1 LIMIT 1",
+    "value": 20,
+    "variable": "answer",
+    "count": 1,
+    "id": "offset-first"
+  },
+  {
+    "query": "MATCH (n:Person) RETURN n.age AS answer ORDER BY answer SKIP 1 LIMIT 1",
+    "value": 20,
+    "variable": "answer",
+    "count": 1,
+    "id": "skip-alias"
+  },
+  {
+    "query": "MATCH (n:Person) RETURN n LIMIT 0",
+    "count": 0,
+    "id": "limit-zero"
+  },
+  {
+    "query": "MATCH (n:Person) RETURN DISTINCT n.age AS answer LIMIT 0",
+    "count": 0,
+    "id": "limit-zero-projection"
+  },
+  {
+    "query": "MATCH (n:Person) RETURN COUNT(*) AS answer LIMIT 0",
+    "count": 0,
+    "id": "limit-zero-aggregate"
+  },
+  {
+    "query": "MATCH (n:Person) RETURN n, COUNT(*) AS answer GROUP BY n LIMIT 0",
+    "count": 0,
+    "id": "limit-zero-group-aggregate"
+  },
+  {
+    "id": "optional-filter-preserves-rows",
+    "query": "MATCH (n:Person) OPTIONAL MATCH (n)-[r:knows]->(m) WHERE m.age>100 RETURN n",
+    "count": 3
+  },
+  {
+    "id": "optional-filter-preserves-root-constraints",
+    "query": "MATCH (n:Person) OPTIONAL MATCH (n)-[r:knows]->(m) WHERE n.age>100 RETURN n",
+    "count": 3
+  }
+]

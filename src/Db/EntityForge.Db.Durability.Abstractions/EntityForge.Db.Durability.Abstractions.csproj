@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageDescription>Advanced EntityForgeDB durability envelopes for storage-engine and persistence integrations.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+    </ItemGroup>
+</Project>

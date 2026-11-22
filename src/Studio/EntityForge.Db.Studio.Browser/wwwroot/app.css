@@ -1,0 +1,40 @@
+html, body, #out {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #101114;
+}
+
+.entityforge-splash {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #eef1f6;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.entityforge-splash div:last-child {
+  display: grid;
+  gap: 4px;
+}
+
+.entityforge-splash span {
+  color: #9299a6;
+  font-size: 13px;
+}
+
+.entityforge-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #53c8f2, #6657d9);
+  color: white;
+  font-weight: 800;
+  letter-spacing: -1px;
+}

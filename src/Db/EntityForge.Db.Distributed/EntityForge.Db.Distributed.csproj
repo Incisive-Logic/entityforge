@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageDescription>EntityForgeDB partition-position distributed coordination, owner execution and participant protocols.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Distributed.Contracts/EntityForge.Db.Distributed.Contracts.csproj" />
+        <PackageReference Include="dotnet-etcd" />
+        <PackageReference Include="Google.Protobuf" />
+        <ProjectReference Include="../EntityForge.Db.Graph/EntityForge.Db.Graph.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Rdf/EntityForge.Db.Rdf.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Engine/EntityForge.Db.Semantic.Engine.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic/EntityForge.Db.Semantic.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage.Local/EntityForge.Db.Storage.Local.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Transport.Contracts/EntityForge.Db.Transport.Contracts.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.LegacyHosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Qualification" />
+        <InternalsVisibleTo Include="EntityForge.Db.GraphSideBySide" />
+        <InternalsVisibleTo Include="EntityForge.Db.Workloads" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Gql/EntityForge.Db.Gql.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Query.Adapters/EntityForge.Db.Query.Adapters.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Client" />
+    </ItemGroup>
+</Project>

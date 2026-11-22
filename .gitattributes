@@ -1,0 +1,16 @@
+# Match EditorConfig for authored code on every checkout platform.
+*.cs text eol=lf
+*.csproj text eol=lf
+*.props text eol=lf
+*.targets text eol=lf
+.editorconfig text eol=lf
+
+# Leave generated/imported material under its existing Git conversion behavior.
+**/ThirdParty/** !text !eol
+**/Unicode/** !text !eol
+**/Fixtures/** !text !eol
+**/upstream/** !text !eol
+*.generated.cs !text !eol
+src/Shared/EntityForge.Semantics.Protobuf/SemanticPayload.cs !text !eol
+src/Db/EntityForge.Db.Distributed/Hosting/QueryOperator.cs !text !eol
+src/Shared/EntityForge.Utility/FastWildcard.cs !text !eol

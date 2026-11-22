@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Description>UI-framework-neutral application services for EntityForgeDB .NET clients.</Description>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="GraphQL-Parser" />
+        <ProjectReference Include="../../Db/EntityForge.Db.Client/EntityForge.Db.Client.csproj" />
+        <ProjectReference Include="../../Db/EntityForge.Db.Transport.Contracts/EntityForge.Db.Transport.Contracts.csproj" />
+        <ProjectReference Include="../../Db/EntityForge.Db.Semantic.Abstractions/EntityForge.Db.Semantic.Abstractions.csproj" />
+    </ItemGroup>
+</Project>

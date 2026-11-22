@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Graph.Client/EntityForge.Db.Graph.Client.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Rdf.Client/EntityForge.Db.Rdf.Client.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Semantic.Client/EntityForge.Db.Semantic.Client.csproj" />
+    </ItemGroup>
+</Project>

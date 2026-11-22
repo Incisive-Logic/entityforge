@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.LegacyHosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+        <ProjectReference Include="../EntityForge.Db.Durability.Abstractions/EntityForge.Db.Durability.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage/EntityForge.Db.Storage.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj" />
+    </ItemGroup>
+</Project>

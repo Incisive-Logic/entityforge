@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Graph" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Recovery.Worker" />
+        <InternalsVisibleTo Include="EntityForge.Db.LegacyHosting.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Tests.WalkingSlice" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Qualification" />
+        <InternalsVisibleTo Include="EntityForge.Db.Comparative" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Graph.Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Query.Adapters" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Client" />
+    </ItemGroup>
+</Project>

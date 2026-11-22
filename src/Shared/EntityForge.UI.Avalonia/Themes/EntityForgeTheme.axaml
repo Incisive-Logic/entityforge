@@ -1,0 +1,503 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:EntityForge.UI.Avalonia.Controls">
+  <Styles.Resources>
+    <FontFamily x:Key="EntityForge.Font.Ui">fonts:Inter#Inter</FontFamily>
+    <!-- Disclosure headers retain native Expander/ToggleButton behaviour without
+         the filled field and trailing arrow used by selection controls. -->
+    <ControlTheme x:Key="EntityForge.DisclosureHeader" TargetType="ToggleButton">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Left" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Control}" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border x:Name="DisclosureBorder" Background="{TemplateBinding Background}"
+                  BorderBrush="Transparent" BorderThickness="1" CornerRadius="3" Padding="5,5">
+            <Grid ColumnDefinitions="12,*" ColumnSpacing="7">
+              <Path x:Name="DisclosureChevron" Width="8" Height="8" Stretch="Uniform"
+                    Data="M 1 0 L 7 4 L 1 8 Z"
+                    Fill="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+              <ContentPresenter x:Name="PART_ContentPresenter" Grid.Column="1"
+                                Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+      <Style Selector="^:checked /template/ Path#DisclosureChevron">
+        <Setter Property="Data" Value="M 0 1 L 8 1 L 4 7 Z" />
+      </Style>
+      <Style Selector="^:pointerover /template/ Border#DisclosureBorder">
+        <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+      </Style>
+      <Style Selector="^:pressed /template/ Border#DisclosureBorder">
+        <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceRaised}" />
+      </Style>
+      <Style Selector="^:focus-visible /template/ Border#DisclosureBorder">
+        <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Focus}" />
+      </Style>
+      <Style Selector="^:disabled"><Setter Property="Opacity" Value="0.5" /></Style>
+    </ControlTheme>
+  </Styles.Resources>
+
+  <Style Selector="Expander:down">
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="25,4,0,8" />
+  </Style>
+  <Style Selector="Expander:down /template/ ToggleButton#ExpanderHeader">
+    <Setter Property="Theme" Value="{StaticResource EntityForge.DisclosureHeader}" />
+  </Style>
+  <Style Selector="Expander:down /template/ Border#ExpanderContent">
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+
+  <Style Selector="ButtonSpinner /template/ RepeatButton#PART_IncreaseButton">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter x:Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}"
+                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}"
+                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+          <ContentPresenter.Content><Path Width="8" Height="5" Stretch="Uniform" Data="M 0 5 L 4 0 L 8 5 Z"
+                Fill="{DynamicResource EntityForge.Brush.Text}" /></ContentPresenter.Content>
+        </ContentPresenter>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="ButtonSpinner /template/ RepeatButton#PART_DecreaseButton">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter x:Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}" Foreground="{TemplateBinding Foreground}"
+                          BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                          CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}"
+                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+          <ContentPresenter.Content><Path Width="8" Height="5" Stretch="Uniform" Data="M 0 0 L 8 0 L 4 5 Z"
+                Fill="{DynamicResource EntityForge.Brush.Text}" /></ContentPresenter.Content>
+        </ContentPresenter>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="ComboBox.ef-text-choice">
+    <Setter Property="SelectionBoxItemTemplate">
+      <DataTemplate>
+        <TextBlock Text="{Binding}" TextTrimming="CharacterEllipsis"
+                   Foreground="{DynamicResource EntityForge.Brush.Text}" />
+      </DataTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="Button.ef-checklist-picker">
+    <Setter Property="Padding" Value="12,7" />
+    <Setter Property="CornerRadius" Value="7" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+  </Style>
+  <Style Selector="Path.ef-picker-arrow">
+    <Setter Property="Width" Value="8" />
+    <Setter Property="Height" Value="5" />
+    <Setter Property="Stretch" Value="Uniform" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Fill" Value="{DynamicResource EntityForge.Brush.Text}" />
+  </Style>
+  <Style Selector="StackPanel.ef-checklist-content">
+    <Setter Property="Width" Value="280" />
+    <Setter Property="MaxWidth" Value="360" />
+  </Style>
+  <Style Selector="ScrollViewer.ef-checklist-options">
+    <Setter Property="MaxHeight" Value="320" />
+  </Style>
+
+  <Style Selector="Window, UserControl">
+    <Setter Property="FontFamily" Value="{DynamicResource EntityForge.Font.Ui}" />
+    <Setter Property="FontSize" Value="{DynamicResource EntityForge.FontSize.Body}" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Body}" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+  </Style>
+
+  <!-- Dynamically composed module trees can cross ContentControl template boundaries.
+       Keep their typography deterministic instead of depending on inherited theme defaults. -->
+  <Style Selector="TextBlock">
+    <Setter Property="FontFamily" Value="{DynamicResource EntityForge.Font.Ui}" />
+    <Setter Property="FontSize" Value="{DynamicResource EntityForge.FontSize.Body}" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Body}" />
+  </Style>
+
+  <!-- Button string content is rendered by the control template rather than as an
+       application TextBlock, so establish the same baseline on the control itself. -->
+  <Style Selector="Button">
+    <Setter Property="FontFamily" Value="{DynamicResource EntityForge.Font.Ui}" />
+    <Setter Property="FontSize" Value="{DynamicResource EntityForge.FontSize.Body}" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Control}" />
+  </Style>
+
+  <!-- Checkbox labels are template content too; do not inherit a host-specific size. -->
+  <Style Selector="CheckBox">
+    <Setter Property="FontFamily" Value="{DynamicResource EntityForge.Font.Ui}" />
+    <Setter Property="FontSize" Value="{DynamicResource EntityForge.FontSize.Body}" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Body}" />
+  </Style>
+
+  <!-- Compact product typography: hierarchy comes from size and weight, not accent colours. -->
+  <Style Selector="TextBlock.ef-panel-title, TextBlock.ef-section-title">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Emphasis}" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+  </Style>
+  <Style Selector="TextBlock.ef-field-label">
+    <Setter Property="FontSize" Value="{DynamicResource EntityForge.FontSize.Body}" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Emphasis}" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+  </Style>
+  <Style Selector="TextBlock.ef-entity-title">
+    <Setter Property="FontSize" Value="16" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Emphasis}" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+  </Style>
+
+  <Style Selector="TextBlock.ef-eyebrow">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.TextMuted}" />
+    <Setter Property="LetterSpacing" Value="1.2" />
+  </Style>
+
+  <Style Selector="TextBlock.ef-title">
+    <Setter Property="FontSize" Value="20" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+
+  <Style Selector="TextBlock.ef-display">
+    <Setter Property="FontSize" Value="28" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+
+  <Style Selector="TextBlock.ef-muted">
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.TextMuted}" />
+  </Style>
+
+  <Style Selector="TextBlock.ef-accent"><Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Accent}" /></Style>
+  <Style Selector="TextBlock.ef-semantic"><Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Semantic}" /></Style>
+  <Style Selector="TextBlock.ef-graph"><Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Graph}" /></Style>
+  <Style Selector="TextBlock.ef-rdf"><Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Rdf}" /></Style>
+  <Style Selector="TextBlock.ef-success"><Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Success}" /></Style>
+  <Style Selector="TextBlock.ef-warning"><Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Warning}" /></Style>
+  <Style Selector="TextBlock.ef-evidence"><Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Evidence}" /></Style>
+
+  <Style Selector="Border.ef-control-group">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceRaised}" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="12" />
+  </Style>
+
+  <Style Selector="Border.ef-card">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.Surface}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="12" />
+    <Setter Property="Padding" Value="16" />
+  </Style>
+
+  <Style Selector="Border.ef-card.raised">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceRaised}" />
+    <Setter Property="BoxShadow" Value="0 8 24 0 #18000000" />
+  </Style>
+
+  <Style Selector="Border.ef-module">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.Surface}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.PanelBorder}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="10" />
+    <Setter Property="ClipToBounds" Value="True" />
+  </Style>
+
+  <Style Selector="Border.ef-workspace-edit-frame">
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Focus}" />
+    <Setter Property="ClipToBounds" Value="True" />
+  </Style>
+
+  <Style Selector="Border.ef-layout-edit-overlay">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.Surface}" />
+    <Setter Property="Opacity" Value="0.6" />
+  </Style>
+
+  <Style Selector="GridSplitter.ef-workspace-splitter">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Opacity" Value="0" />
+  </Style>
+
+  <Style Selector="GridSplitter.ef-workspace-splitter.editing">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.Focus}" />
+    <Setter Property="Opacity" Value="0.58" />
+  </Style>
+
+  <Style Selector="Border.ef-module-header">
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="0,0,0,1" />
+    <Setter Property="Padding" Value="14,10" />
+  </Style>
+
+  <Style Selector="Border.ef-rail">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.Surface}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="0,0,1,0" />
+  </Style>
+
+  <Style Selector="Button.ef-rail-command">
+    <Setter Property="Width" Value="38" />
+    <Setter Property="Height" Value="38" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="FontSize" Value="18" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="CornerRadius" Value="9" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <Style Selector="Button.ef-rail-command:pointerover">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+  </Style>
+
+  <Style Selector="Button.ef-rail-command.active">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.AccentText}" />
+  </Style>
+
+  <Style Selector="Button.ef-tab">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0,0,0,2" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="CornerRadius" Value="0" />
+    <Setter Property="Padding" Value="14,11" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Control}" />
+  </Style>
+
+  <Style Selector="Button.ef-tab.active">
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+  </Style>
+
+  <Style Selector="Border.ef-badge">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+    <Setter Property="CornerRadius" Value="99" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="Padding" Value="8,3" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="Border.ef-badge &gt; TextBlock">
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="TextBox.ef-search">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Border}" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="12,8" />
+  </Style>
+
+  <Style Selector="Button.ef-command">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="7" />
+    <Setter Property="Padding" Value="12,7" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Control}" />
+  </Style>
+
+  <Style Selector="Button.ef-command:pointerover">
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.BorderStrong}" />
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceRaised}" />
+  </Style>
+
+  <Style Selector="Button.ef-primary">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.Accent}" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.AccentText}" />
+    <Setter Property="CornerRadius" Value="7" />
+    <Setter Property="Padding" Value="14,8" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Emphasis}" />
+  </Style>
+
+  <Style Selector="Button.ef-primary:pointerover">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.AccentHover}" />
+  </Style>
+
+  <!-- Shared panel navigation: quiet text tabs with a theme-coloured underline. -->
+  <Style Selector="ListBox.ef-panel-tabs">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+  </Style>
+  <Style Selector="ListBox.ef-panel-tabs ListBoxItem">
+    <Setter Property="Padding" Value="12,7" />
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.TextMuted}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border x:Name="TabUnderline" BorderThickness="0,0,0,2" BorderBrush="Transparent" Background="Transparent" Padding="{TemplateBinding Padding}">
+          <ContentPresenter x:Name="TabContent" Background="Transparent" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="ListBox.ef-panel-tabs ListBoxItem:pointerover">
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+  </Style>
+  <Style Selector="ListBox.ef-panel-tabs ListBoxItem:selected">
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+    <Setter Property="FontWeight" Value="{DynamicResource EntityForge.FontWeight.Emphasis}" />
+  </Style>
+  <Style Selector="ListBox.ef-panel-tabs ListBoxItem:selected /template/ Border#TabUnderline">
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Accent}" />
+  </Style>
+  <Style Selector="ListBox.ef-panel-tabs ListBoxItem:focus-visible /template/ Border#TabUnderline">
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Accent}" />
+    <Setter Property="BorderThickness" Value="1,1,1,2" />
+  </Style>
+  <Style Selector="ListBox.ef-panel-tabs:disabled">
+    <Setter Property="Opacity" Value="0.5" />
+  </Style>
+  <Style Selector="StackPanel.ef-pagination">
+    <Setter Property="Spacing" Value="6" />
+  </Style>
+  <Style Selector="TextBlock.ef-page-label">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="4,0" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.TextMuted}" />
+  </Style>
+  <!-- Compact indeterminate progress, shared by panel toolbars. -->
+  <Style Selector="controls|ProgressRing">
+    <Setter Property="Width" Value="18" />
+    <Setter Property="Height" Value="18" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Accent}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid>
+          <Ellipse Margin="2" Stroke="{DynamicResource EntityForge.Brush.Border}" StrokeThickness="2" />
+          <Path x:Name="Spinner" Data="M 9 2 A 7 7 0 1 1 2 9" Stroke="{TemplateBinding Foreground}"
+                StrokeThickness="2" StrokeLineCap="Round" RenderTransformOrigin="50%,50%">
+            <Path.RenderTransform><RotateTransform /></Path.RenderTransform>
+          </Path>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="controls|ProgressRing:active /template/ Path#Spinner">
+    <Style.Animations>
+      <Animation Duration="0:0:0.9" IterationCount="INFINITE">
+        <KeyFrame Cue="0%"><Setter Property="RotateTransform.Angle" Value="0" /></KeyFrame>
+        <KeyFrame Cue="100%"><Setter Property="RotateTransform.Angle" Value="360" /></KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+  <Style Selector="Button.ef-page-button, Button.ef-icon-button">
+    <Setter Property="Width" Value="30" />
+    <Setter Property="Height" Value="30" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="Padding" Value="8" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Button.ef-page-button:pointerover /template/ ContentPresenter#PART_ContentPresenter, Button.ef-icon-button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceRaised}" />
+  </Style>
+  <Style Selector="Button.ef-page-button">
+    <Setter Property="Padding" Value="6" />
+  </Style>
+  <Style Selector="Button.ef-page-button:disabled, Button.ef-icon-button:disabled">
+    <Setter Property="Opacity" Value="0.35" />
+  </Style>
+  <Style Selector="Path.ef-copy-icon">
+    <Setter Property="Width" Value="14" />
+    <Setter Property="Height" Value="14" />
+    <Setter Property="Stretch" Value="Uniform" />
+    <Setter Property="Data" Value="M 5 5 H 14 V 14 H 5 Z M 10 5 V 1 H 1 V 10 H 5" />
+    <Setter Property="Stroke" Value="{DynamicResource EntityForge.Brush.Text}" />
+    <Setter Property="StrokeThickness" Value="1.5" />
+  </Style>
+  <Style Selector="Button.ef-page-button PathIcon">
+    <Setter Property="Width" Value="8" />
+    <Setter Property="Height" Value="10" />
+  </Style>
+  <Style Selector="PathIcon.ef-page-previous">
+    <Setter Property="Data" Value="M 8 0 L 0 5 L 8 10 Z" />
+  </Style>
+  <Style Selector="PathIcon.ef-page-next">
+    <Setter Property="Data" Value="M 0 0 L 8 5 L 0 10 Z" />
+  </Style>
+  <Style Selector="ListBox.ef-list">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+
+  <Style Selector="Button.ef-catalog-concept">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+  <Style Selector="Button.ef-catalog-concept:pointerover">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+  </Style>
+  <Style Selector="Button.ef-catalog-concept.selected">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+  </Style>
+  <Style Selector="Button.ef-concept-link">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="99" />
+    <Setter Property="Padding" Value="9,4" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.Text}" />
+  </Style>
+  <Style Selector="Button.ef-concept-link:pointerover">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceRaised}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.BorderStrong}" />
+  </Style>
+  <Style Selector="TextBlock.ef-concept-relation">
+    <Setter Property="FontSize" Value="10" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="LetterSpacing" Value="0.8" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.TextMuted}" />
+  </Style>
+  <Style Selector="TextBlock.ef-catalog-glyph">
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.TextMuted}" />
+  </Style>
+  <Style Selector="Border.ef-catalog-member, Border.ef-list-row">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.SurfaceInteractive}" />
+  </Style>
+  <Style Selector="Border.ef-entity-field-row">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EntityForge.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="0,0,0,1" />
+    <Setter Property="Padding" Value="0" />
+  </Style>
+  <Style Selector="Border.ef-disabled-overlay">
+    <Setter Property="Background" Value="{DynamicResource EntityForge.Brush.InactivePanelOverlay}" />
+  </Style>
+  <Style Selector="TextBlock.ef-technical">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Foreground" Value="{DynamicResource EntityForge.Brush.TextMuted}" />
+  </Style>
+</Styles>

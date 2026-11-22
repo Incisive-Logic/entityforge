@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../Shared/EntityForge.UI.Core/EntityForge.UI.Core.csproj" />
+        <ProjectReference Include="../../AppModel/EntityForge.Db.AppModel/EntityForge.Db.AppModel.csproj" />
+    </ItemGroup>
+</Project>

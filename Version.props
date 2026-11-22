@@ -1,0 +1,9 @@
+<Project>
+    <!-- Single source for the product version. The SDK derives package, assembly,
+       file and informational versions; informational versions also include Git SHA. -->
+    <PropertyGroup>
+        <VersionPrefix>0.8.0</VersionPrefix>
+        <VersionSuffix>preview.1</VersionSuffix>
+        <EntityForgeRepositoryUrl Condition="'$(EntityForgeRepositoryUrl)' == ''">https://github.com/Incisive-Logic/entityforge-db</EntityForgeRepositoryUrl>
+    </PropertyGroup>
+</Project>

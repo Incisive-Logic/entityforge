@@ -1,0 +1,220 @@
+# Runtime schema for the standalone Semantic host at POST /graphql.
+# See SEMANTIC_GRAPHQL_DESIGN.md for implementation status and semantic constraints.
+schema { query: Query, mutation: Mutation }
+
+scalar URI
+scalar UUID
+scalar Long
+scalar DateTime
+scalar JSON
+scalar ScalarValue
+
+enum ConceptMatchMode { direct entailed }
+enum ValueSelection { allCandidates firstCandidate preferredProvider }
+enum RelationshipDirection { outgoing incoming }
+enum SortDirection { ascending descending }
+
+type Query {
+  "Read a bounded entity projection at one database snapshot. Select fields, relationships and optional evidence."
+  entities(
+    "The concept URI from the published vocabulary."
+    concept: URI!
+    conceptMatchMode: ConceptMatchMode = entailed
+    identities: [ID!]
+    where: EntityFilter
+    assertions: AssertionPolicy
+    observationTime: TimeRange
+    validTime: TimeRange
+    "Read this retained database version. A historical version must still be available."
+    snapshotVersion: Long
+    snapshotLeaseId: UUID
+    orderBy: [EntityOrder!]
+    first: Int
+    after: String
+    "Include provenance records referenced by the projected values."
+    includeEvidence: Boolean = false
+  ): EntityPage!
+
+  "Aggregate the same filtered entity population as an entity query, within the input bound."
+  aggregateEntities(
+    "The concept URI from the published vocabulary."
+    concept: URI!
+    conceptMatchMode: ConceptMatchMode = entailed
+    identities: [ID!]
+    where: EntityFilter
+    assertions: AssertionPolicy
+    observationTime: TimeRange
+    validTime: TimeRange
+    "Read this retained database version. A historical version must still be available."
+    snapshotVersion: Long
+    snapshotLeaseId: UUID
+    dimensions: [Dimension!]
+    measures: [Measure!]!
+    maximumInputEntities: Int
+  ): AggregateResult!
+}
+
+# Exactly one predicate form: boolean composition, relationship existence,
+# property existence, or one property comparison. Typed metadata qualifies comparisons.
+input EntityFilter {
+  and: [EntityFilter!]
+  or: [EntityFilter!]
+  not: EntityFilter
+  property: URI
+  exists: Boolean
+  eq: ScalarValue
+  ne: ScalarValue
+  contains: ScalarValue
+  startsWith: ScalarValue
+  gt: ScalarValue
+  gte: ScalarValue
+  lt: ScalarValue
+  lte: ScalarValue
+  kind: String
+  datatype: URI
+  language: String
+  relationship: URI
+  direction: RelationshipDirection
+  targetConcept: URI
+  targetWhere: EntityFilter
+}
+
+input AssertionPolicy {
+  allowedProviders: [URI!]
+  excludedProviders: [URI!]
+  allowedSourceVocabularies: [URI!]
+  allowedTargetVocabularies: [URI!]
+  requireValidityInterval: Boolean = false
+  requireResponsibleAgent: Boolean = false
+}
+
+input TimeRange { fromInclusive: DateTime toExclusive: DateTime }
+input EntityOrder {
+  property: URI!
+  direction: SortDirection = ascending
+  valueSelection: String = "minimum"
+  missingValues: String = "last"
+}
+input Dimension { property: URI! name: String! }
+input Measure { function: String! name: String! property: URI }
+
+type EntityPage {
+  nodes: [Entity!]!
+  pageInfo: PageInfo!
+  evidence: [Evidence!]!
+}
+type PageInfo { endCursor: String hasNextPage: Boolean! snapshotVersion: Long! }
+type Entity {
+  identity: ID!
+  types: [URI!]!
+  field(property: URI!, valueSelection: ValueSelection = allCandidates,
+    preferredProviders: [URI!]): FieldValues!
+  relationship(property: URI!, targetConcept: URI!,
+    direction: RelationshipDirection = outgoing): RelatedEntities!
+}
+type FieldValues { values: [SemanticValue!]! }
+type RelatedEntities { nodes: [Entity!]! }
+type SemanticValue {
+  kind: String!
+  value: JSON
+  sourceTerm: URI!
+  projectedTerm: URI!
+  evidence: [ID!]!
+}
+type Evidence {
+  identifier: ID!
+  provider: URI!
+  sourceRecord: String
+  observedAt: DateTime
+  validFrom: DateTime
+  validTo: DateTime
+}
+
+# Aggregate names are chosen by the caller. Keep the dynamic row-values map
+# explicitly JSON, rather than claiming it has statically selectable fields.
+type AggregateResult {
+  rows: [AggregateRow!]!
+  evidence: [Evidence!]!
+  inputEntityCount: Long!
+  snapshotVersion: Long!
+}
+type AggregateRow { values: JSON! evidence: [ID!]! }
+
+"""One bounded, atomic incremental source session. Reuse the identical input to retry."""
+type Mutation { applySemanticChanges(input: SemanticChangeBatchInput!): SemanticCommitReceipt! }
+enum EntityChangeKind { upsert replaceSourceState retractSourceEntity }
+enum FieldChangeKind { set add remove removeValue }
+enum RelationshipChangeKind { add remove clear }
+enum WriteValueKind { nullValue boolean integer floatingPoint decimal string languageString date time dateTime duration binary absoluteUri guid json typedLiteral }
+enum SourceExpectation { noPriorProgress exactPredecessor }
+input SemanticChangeBatchInput {
+  sessionId: UUID!
+  source: SemanticWriteSourceInput!
+  producerActivityId: UUID!
+  startedAt: DateTime!
+  completedAt: DateTime!
+  correlationId: String
+  progressPrecondition: SourcePreconditionInput
+  changes: [SemanticEntityChangeInput!]!
+}
+input SemanticWriteSourceInput {
+  sourceSystem: URI!
+  sourcePartition: URI!
+  generationId: UUID!
+  sourceVersion: String!
+  sourcePosition: String!
+}
+input SourcePreconditionInput { expectation: SourceExpectation!, predecessor: SourcePositionInput }
+input SourcePositionInput { generationId: UUID!, sourceVersion: String!, sourcePosition: String! }
+input SemanticEntityChangeInput {
+  changeId: UUID!
+  kind: EntityChangeKind!
+  subject: SemanticIdentityInput!
+  provenance: SemanticWriteProvenanceInput!
+  fields: [SemanticFieldChangeInput!]
+  relationships: [SemanticRelationshipChangeInput!]
+}
+input SemanticIdentityInput { concept: URI!, scheme: URI!, schemeName: String, value: SemanticWriteValueInput! }
+"""Exact lexical values avoid lossy JSON numbers. JSON bags use json; nullValue has neither."""
+input SemanticWriteValueInput { kind: WriteValueKind!, lexical: String, json: JSON, language: String, datatype: URI }
+input SemanticFieldChangeInput { property: URI!, kind: FieldChangeKind!, value: SemanticWriteValueInput }
+input SemanticRelationshipChangeInput { relationship: URI!, kind: RelationshipChangeKind!, target: SemanticIdentityInput }
+input SemanticModelInput { identifier: URI!, version: String! }
+input SemanticAgentInput { identifier: URI!, name: String }
+input SemanticSourceEntityInput { identifier: URI!, description: String }
+input SemanticActivityInput { identifier: URI!, startedAt: DateTime, endedAt: DateTime }
+input SemanticArtifactInput { identifier: URI!, version: String!, contentHash: String }
+input SemanticWriteProvenanceInput {
+  sourceRecord: String!
+  observedAt: DateTime!
+  targetVocabulary: SemanticModelInput!
+  sourceVocabulary: SemanticModelInput
+  mappings: [SemanticModelInput!]
+  validFrom: DateTime
+  validTo: DateTime
+  generatedAt: DateTime
+  correlationId: String
+  responsibleAgent: SemanticAgentInput
+  sourceEntity: SemanticSourceEntityInput
+  transformActivity: SemanticActivityInput
+  transformTemplate: SemanticArtifactInput
+  targetBinding: SemanticArtifactInput
+}
+type SemanticCommitReceipt {
+  sessionId: UUID!
+  databaseIncarnation: UUID!
+  transactionId: UUID!
+  version: Long!
+  outcome: String!
+  changeCursor: String
+  effectCount: Int
+  sourceProgress: SemanticSourceProgress!
+}
+type SemanticSourceProgress {
+  sourceSystem: URI!
+  sourcePartition: URI!
+  generationId: UUID!
+  sourceVersion: String!
+  sourcePosition: String!
+  databaseVersion: Long!
+}

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Semantic.Core/EntityForge.Db.Semantic.Core.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Query.Planning/EntityForge.Db.Query.Planning.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Query/EntityForge.Query.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Engine" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+dotNetRDF JSON-LD expansion components
+Upstream: https://github.com/dotnetrdf/dotnetrdf/tree/67142d12e67fb68b37d009c3579ddebaeb4ff2c1
+Version: 3.5.2; licence: MIT (see LICENSE.txt and retained file headers).
+Files: ContextProcessor.cs, ExpandProcessor.cs, JsonLdUtils.cs, ProcessorBase.cs.
+EntityForge changes: private namespace and imports; native RDF absolute-IRI validation;
+nullable context disabled to match upstream; scoped suppression for retained obsolete relative-IRI helpers.
+Retain this notice and the MIT licence when redistributing these components.
+EntityForge additionally resolves local base IRIs with its native generic IRI resolver. Upstream portions remain MIT; EntityForge-authored modifications are Apache-2.0 under the repository licence.
+Additional derived files: JsonLdRdfConverter.cs (upstream JsonLdParser.cs, expanded-input conversion only) and JsonLiteralSerializer.cs. Protected term comparison also checks language values and scoped contexts.
+JSON literal numeric tokens delegate to the EntityForge binary64 canonical number formatter.

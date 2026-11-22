@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Authors>Incisive Logic</Authors>
+        <Company>Incisive Logic</Company>
+        <Product>EntityForge Query Contracts</Product>
+        <PackageId>EntityForge.Query</PackageId>
+        <PackageDescription>Stable, transport-neutral query and projection contracts shared across EntityForge applications.</PackageDescription>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>entityforge;database;query;contracts</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageReleaseTier>Consumer</PackageReleaseTier>
+        <EnablePackageValidation>true</EnablePackageValidation>
+        <EnableStrictModeForCompatibleFrameworksInPackage>true</EnableStrictModeForCompatibleFrameworksInPackage>
+        <PackageValidationBaselineVersion Condition="'$(EntityForgeApiCompatibilityBaselineVersion)' != ''">$(EntityForgeApiCompatibilityBaselineVersion)</PackageValidationBaselineVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Semantics/EntityForge.Semantics.csproj" />
+        <InternalsVisibleTo Include="EntityForge.Db.Graph" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Gql" />
+    </ItemGroup>
+</Project>

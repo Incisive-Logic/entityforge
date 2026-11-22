@@ -1,0 +1,19 @@
+<members>
+  <member name="T:EntityForge.Utility.WildcardMatch">
+    <summary>Matches strings against patterns containing '?' for one character and '*' for any sequence of characters.</summary>
+    <remarks>Third-party utility by H. A. Sullivan, retained under its original MIT licence. These reference comments do not modify the vendor implementation.</remarks>
+  </member>
+  <member name="M:EntityForge.Utility.WildcardMatch.EqualsWildcard(System.String,System.String)">
+    <summary>Tests a case-sensitive wildcard match; returns false if either input is null.</summary>
+    <param name="text">The complete string to match.</param>
+    <param name="wildcardString">A pattern containing literal characters, '?' and '*'.</param>
+    <returns>Whether the complete text matches the pattern.</returns>
+  </member>
+  <member name="M:EntityForge.Utility.WildcardMatch.EqualsWildcard(System.String,System.String,System.Boolean)">
+    <summary>Tests a wildcard match, optionally lowercasing both inputs using the current culture first.</summary>
+    <param name="text">The complete string to match; must not be null when ignoreCase is true.</param>
+    <param name="wildcardString">The wildcard pattern; must not be null when ignoreCase is true.</param>
+    <param name="ignoreCase">Whether to lowercase both inputs before matching. This is not an ordinal comparison.</param>
+    <returns>Whether the complete text matches the pattern.</returns>
+  </member>
+</members>

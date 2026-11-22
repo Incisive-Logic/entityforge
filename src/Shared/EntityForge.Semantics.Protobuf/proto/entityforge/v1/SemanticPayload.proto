@@ -1,0 +1,234 @@
+syntax = "proto3";
+
+option csharp_namespace = "EntityForge.Semantics.Protobuf";
+
+import "google/protobuf/timestamp.proto";
+
+enum SemanticTermRoleMessage {
+  SEMANTIC_TERM_ROLE_CONCEPT = 0;
+  SEMANTIC_TERM_ROLE_PROPERTY = 1;
+  SEMANTIC_TERM_ROLE_RELATIONSHIP = 2;
+}
+
+enum SemanticValueKindMessage {
+  SEMANTIC_VALUE_KIND_NULL = 0;
+  SEMANTIC_VALUE_KIND_BOOLEAN = 1;
+  SEMANTIC_VALUE_KIND_INTEGER = 2;
+  SEMANTIC_VALUE_KIND_FLOATING_POINT = 3;
+  SEMANTIC_VALUE_KIND_DECIMAL = 4;
+  SEMANTIC_VALUE_KIND_STRING = 5;
+  SEMANTIC_VALUE_KIND_LANGUAGE_STRING = 6;
+  SEMANTIC_VALUE_KIND_DATE = 7;
+  SEMANTIC_VALUE_KIND_TIME = 8;
+  SEMANTIC_VALUE_KIND_DATE_TIME = 9;
+  SEMANTIC_VALUE_KIND_DURATION = 10;
+  SEMANTIC_VALUE_KIND_BINARY = 11;
+  SEMANTIC_VALUE_KIND_ABSOLUTE_URI = 12;
+  SEMANTIC_VALUE_KIND_GUID = 13;
+  SEMANTIC_VALUE_KIND_JSON = 14;
+  SEMANTIC_VALUE_KIND_TYPED_LITERAL = 15;
+}
+
+enum SemanticModelKindMessage {
+  SEMANTIC_MODEL_KIND_VOCABULARY = 0;
+  SEMANTIC_MODEL_KIND_MAPPING_SET = 1;
+}
+
+enum SemanticEntityChangeKindMessage {
+  SEMANTIC_ENTITY_CHANGE_KIND_UPSERT = 0;
+  SEMANTIC_ENTITY_CHANGE_KIND_REPLACE_SOURCE_STATE = 1;
+  SEMANTIC_ENTITY_CHANGE_KIND_RETRACT_SOURCE_ENTITY = 2;
+}
+
+enum SemanticFieldChangeKindMessage {
+  SEMANTIC_FIELD_CHANGE_KIND_SET = 0;
+  SEMANTIC_FIELD_CHANGE_KIND_REMOVE = 1;
+  SEMANTIC_FIELD_CHANGE_KIND_ADD = 2;
+  SEMANTIC_FIELD_CHANGE_KIND_REMOVE_VALUE = 3;
+}
+
+enum SemanticRelationshipChangeKindMessage {
+  SEMANTIC_RELATIONSHIP_CHANGE_KIND_ADD = 0;
+  SEMANTIC_RELATIONSHIP_CHANGE_KIND_REMOVE = 1;
+  SEMANTIC_RELATIONSHIP_CHANGE_KIND_CLEAR = 2;
+}
+
+enum SemanticChangeSessionKindMessage {
+  SEMANTIC_CHANGE_SESSION_KIND_INCREMENTAL = 0;
+  SEMANTIC_CHANGE_SESSION_KIND_SOURCE_SNAPSHOT = 1;
+}
+
+message SemanticTermMessage {
+  string identifier = 1;
+  SemanticTermRoleMessage role = 2;
+}
+
+message LanguageStringValueMessage {
+  string value = 1;
+  string language = 2;
+}
+
+message TypedLiteralValueMessage {
+  string lexical_value = 1;
+  string datatype = 2;
+}
+
+message SemanticValueMessage {
+  SemanticValueKindMessage kind = 1;
+  oneof value {
+    bool boolean_value = 2;
+    sint64 integer_value = 3;
+    double floating_point_value = 4;
+    string decimal_value = 5;
+    string string_value = 6;
+    LanguageStringValueMessage language_string_value = 7;
+    string date_value = 8;
+    string time_value = 9;
+    google.protobuf.Timestamp date_time_value = 10;
+    string duration_value = 11;
+    bytes binary_value = 12;
+    string absolute_uri_value = 13;
+    string guid_value = 14;
+    string json_value = 15;
+    TypedLiteralValueMessage typed_literal_value = 16;
+    bool null_value = 17;
+  }
+}
+
+message SemanticIdentitySchemeMessage {
+  string identifier = 1;
+  string name = 2;
+  SemanticValueKindMessage value_kind = 3;
+  optional string description = 4;
+}
+
+message SemanticEntityIdentityMessage {
+  SemanticTermMessage concept = 1;
+  SemanticIdentitySchemeMessage scheme = 2;
+  SemanticValueMessage value = 3;
+}
+
+message SemanticModelReferenceMessage {
+  string identifier = 1;
+  string version = 2;
+  SemanticModelKindMessage kind = 3;
+}
+
+message SemanticProvenanceEntityMessage {
+  string identifier = 1;
+  optional string description = 2;
+}
+
+message SemanticProvenanceActivityMessage {
+  string identifier = 1;
+  optional google.protobuf.Timestamp started_at = 2;
+  optional google.protobuf.Timestamp ended_at = 3;
+}
+
+message SemanticProvenanceAgentMessage {
+  string identifier = 1;
+  optional string name = 2;
+}
+
+message SemanticArtifactReferenceMessage {
+  string identifier = 1;
+  string version = 2;
+  optional string content_hash = 3;
+}
+
+message SemanticProvenanceMessage {
+  string source_system = 1;
+  string source_record = 2;
+  google.protobuf.Timestamp observed_at = 3;
+  SemanticModelReferenceMessage target_vocabulary = 4;
+  repeated SemanticModelReferenceMessage mappings = 5;
+  optional google.protobuf.Timestamp valid_from = 6;
+  optional google.protobuf.Timestamp valid_to = 7;
+  optional string correlation_id = 8;
+  optional SemanticProvenanceEntityMessage source_entity = 9;
+  optional SemanticProvenanceActivityMessage transform_activity = 10;
+  optional SemanticProvenanceAgentMessage responsible_agent = 11;
+  optional SemanticArtifactReferenceMessage transform_template = 12;
+  google.protobuf.Timestamp generated_at = 13;
+  optional SemanticModelReferenceMessage source_vocabulary = 14;
+  optional SemanticArtifactReferenceMessage target_binding = 15;
+}
+
+message SemanticFieldChangeMessage {
+  SemanticTermMessage field = 1;
+  SemanticFieldChangeKindMessage kind = 2;
+  optional SemanticValueMessage value = 3;
+}
+
+message SemanticRelationshipChangeMessage {
+  SemanticTermMessage relationship = 1;
+  SemanticRelationshipChangeKindMessage kind = 2;
+  SemanticEntityIdentityMessage target = 3;
+}
+
+message SemanticEntityChangeMessage {
+  string change_id = 1;
+  SemanticEntityChangeKindMessage kind = 2;
+  SemanticEntityIdentityMessage subject = 3;
+  SemanticProvenanceMessage provenance = 4;
+  repeated SemanticFieldChangeMessage fields = 5;
+  repeated SemanticRelationshipChangeMessage relationships = 6;
+}
+
+message SemanticChangeSessionSourceMessage {
+  string source_system = 1;
+  string source_partition = 2;
+  string source_version = 3;
+  string generation_id = 4;
+  string source_position = 5;
+}
+
+enum SemanticSourceProgressExpectationMessage {
+  SEMANTIC_SOURCE_PROGRESS_EXPECTATION_NO_PRIOR_PROGRESS = 0;
+  SEMANTIC_SOURCE_PROGRESS_EXPECTATION_EXACT_PREDECESSOR = 1;
+}
+
+message SemanticSourcePositionMessage {
+  string generation_id = 1;
+  string source_version = 2;
+  string source_position = 3;
+}
+
+message SemanticSourceProgressPreconditionMessage {
+  SemanticSourceProgressExpectationMessage expectation = 1;
+  optional SemanticSourcePositionMessage predecessor = 2;
+}
+
+message SemanticChangeSessionStartMessage {
+  string session_id = 1;
+  SemanticChangeSessionKindMessage kind = 2;
+  SemanticChangeSessionSourceMessage source = 3;
+  string producer_activity_id = 4;
+  google.protobuf.Timestamp started_at = 5;
+  optional string correlation_id = 6;
+  optional SemanticSourceProgressPreconditionMessage progress_precondition = 7;
+}
+
+message SemanticChangeSessionPageMessage {
+  string session_id = 1;
+  int32 page_number = 2;
+  repeated SemanticEntityChangeMessage changes = 3;
+}
+
+message SemanticChangeSessionCloseMessage {
+  string session_id = 1;
+  int32 page_count = 2;
+  int32 change_count = 3;
+  string content_hash = 4;
+  google.protobuf.Timestamp closed_at = 5;
+  optional string operation_hash = 6;
+}
+
+message SemanticChangeSessionAbortMessage {
+  string session_id = 1;
+  string error_code = 2;
+  string error = 3;
+  google.protobuf.Timestamp aborted_at = 4;
+  optional int32 failed_page_number = 5;
+}
+

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Gql/EntityForge.Db.Gql.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Client/EntityForge.Db.Client.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Transport.Contracts/EntityForge.Db.Transport.Contracts.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Semantic.Abstractions/EntityForge.Db.Semantic.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Graph.Contracts/EntityForge.Db.Graph.Contracts.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Rdf.Contracts/EntityForge.Db.Rdf.Contracts.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Query/EntityForge.Query.csproj" />
+        <PackageReference Include="GraphQL-Parser" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Query" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Hosting" />
+    </ItemGroup>
+</Project>

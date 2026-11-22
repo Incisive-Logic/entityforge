@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="184" height="48" viewBox="0 0 184 48" role="img" aria-labelledby="title">
+  <title id="title">Get Started with EntityForge</title>
+  <rect x="0.5" y="0.5" width="183" height="47" rx="10" fill="#0057e6" stroke="#3881ff" />
+  <text x="78" y="30" fill="#ffffff" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" text-anchor="middle">Get Started</text>
+  <path d="M143 24h14m-5-5 5 5-5 5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

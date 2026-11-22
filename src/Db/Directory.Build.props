@@ -1,0 +1,36 @@
+<Project>
+    <Import Project="../../Version.props" />
+    <PropertyGroup>
+        <Authors>Incisive Logic</Authors>
+        <Product>EntityForgeDB</Product>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl Condition="'$(EntityForgeRepositoryUrl)' != ''">$(EntityForgeRepositoryUrl)</RepositoryUrl>
+        <PackageTags>database;graph;semantic;knowledge;entityforge</PackageTags>
+        <PackageDescription>EntityForgeDB graph and semantics-integrated database components.</PackageDescription>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Deterministic>true</Deterministic>
+        <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageReleaseTier>Implementation</PackageReleaseTier>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(MSBuildProjectName)' == 'EntityForge.Db.Abstractions' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Semantic.Abstractions' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Graph.Contracts' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Rdf.Contracts' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Rdf' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Client' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Transport.Contracts' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Semantic' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Graph' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Hosting' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Gql' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Distributed'">
+        <PackageReleaseTier>Consumer</PackageReleaseTier>
+        <EnablePackageValidation>true</EnablePackageValidation>
+        <EnableStrictModeForCompatibleFrameworksInPackage>true</EnableStrictModeForCompatibleFrameworksInPackage>
+        <PackageValidationBaselineVersion Condition="'$(EntityForgeApiCompatibilityBaselineVersion)' != ''">$(EntityForgeApiCompatibilityBaselineVersion)</PackageValidationBaselineVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(MSBuildProjectName)' == 'EntityForge.Db.Durability.Abstractions' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Semantic.Durability.Abstractions' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Storage' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Storage.Local' Or       '$(MSBuildProjectName)' == 'EntityForge.Db.Storage.Pages'">
+        <PackageReleaseTier>Advanced</PackageReleaseTier>
+        <EnablePackageValidation>true</EnablePackageValidation>
+        <EnableStrictModeForCompatibleFrameworksInPackage>true</EnableStrictModeForCompatibleFrameworksInPackage>
+        <PackageValidationBaselineVersion Condition="'$(EntityForgeApiCompatibilityBaselineVersion)' != ''">$(EntityForgeApiCompatibilityBaselineVersion)</PackageValidationBaselineVersion>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(IsPackable)' != 'false'">
+        <None Include="$(MSBuildThisFileDirectory)../../docs/db/README.md" Pack="true" PackagePath="" Visible="false" />
+        <None Include="$(MSBuildThisFileDirectory)../../docs/db/LICENSE" Pack="true" PackagePath="" Visible="false" />
+        <None Include="$(MSBuildThisFileDirectory)../../docs/db/NOTICE" Pack="true" PackagePath="" Visible="false" />
+    </ItemGroup>
+</Project>

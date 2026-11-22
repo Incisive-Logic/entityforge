@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+    <PropertyGroup>
+        <TargetFramework>net10.0-browser</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <!-- Skia and HarfBuzz must be linked; an unlinked publish starts with a blank canvas. -->
+        <WasmBuildNative>true</WasmBuildNative>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Avalonia.Browser" />
+        <PackageReference Include="Avalonia.Fonts.Inter" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Studio.Avalonia/EntityForge.Db.Studio.Avalonia.csproj" />
+    </ItemGroup>
+</Project>

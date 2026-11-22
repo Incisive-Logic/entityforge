@@ -1,0 +1,4 @@
+# Match EditorConfig on Windows and Unix checkouts.
+*.cs text eol=lf
+*.ps1 text eol=lf
+.editorconfig text eol=lf

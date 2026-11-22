@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.AccessPaths/EntityForge.Db.AccessPaths.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Durability.Abstractions/EntityForge.Db.Durability.Abstractions.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Storage/EntityForge.Db.Storage.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Storage.Pages.Tests" />
+    </ItemGroup>
+</Project>

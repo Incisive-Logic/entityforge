@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Authors>Incisive Logic</Authors>
+        <Company>Incisive Logic</Company>
+        <Product>EntityForge Canonical Value Contracts</Product>
+        <PackageId>EntityForge.Values</PackageId>
+        <PackageDescription>Canonical JSON and shared value contracts shared across EntityForge applications.</PackageDescription>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>entityforge;database;values;json;contracts</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageReleaseTier>Consumer</PackageReleaseTier>
+        <EnablePackageValidation>true</EnablePackageValidation>
+        <EnableStrictModeForCompatibleFrameworksInPackage>true</EnableStrictModeForCompatibleFrameworksInPackage>
+        <PackageValidationBaselineVersion Condition="'$(EntityForgeApiCompatibilityBaselineVersion)' != ''">$(EntityForgeApiCompatibilityBaselineVersion)</PackageValidationBaselineVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+</Project>

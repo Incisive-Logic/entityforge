@@ -1,0 +1,6 @@
+<Project>
+    <Import Project="..\..\..\Directory.Packages.props" />
+    <ItemGroup>
+        <PackageVersion Include="Avalonia" Version="12.1.1" />
+    </ItemGroup>
+</Project>

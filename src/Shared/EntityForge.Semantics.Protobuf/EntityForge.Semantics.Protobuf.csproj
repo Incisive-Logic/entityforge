@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <Description>Semantic payload protobuf serialization and content hashing.</Description>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Semantics/EntityForge.Semantics.csproj" />
+        <PackageReference Include="Google.Protobuf" />
+        <None Include="proto/**/*.proto" Pack="true" PackagePath="proto" />
+    </ItemGroup>
+</Project>

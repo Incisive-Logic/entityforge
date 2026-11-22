@@ -1,0 +1,3 @@
+[*.cs]
+# Preserve the upstream source layout so updates and the local patch remain reviewable.
+generated_code = true

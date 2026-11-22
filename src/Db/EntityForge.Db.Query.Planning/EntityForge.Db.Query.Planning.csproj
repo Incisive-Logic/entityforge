@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>
+        <PackageDescription>Profile-neutral candidate planning, bounded sorting and text primitives for EntityForgeDB query engines.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Graph" />
+        <InternalsVisibleTo Include="EntityForge.Db.Rdf" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Recovery.Worker" />
+        <EmbeddedResource Include="Unicode/UnicodeData-16.0.0.txt" />
+        <EmbeddedResource Include="Unicode/SpecialCasing-16.0.0.txt" />
+        <EmbeddedResource Include="Unicode/DerivedCoreProperties-16.0.0.txt" />
+        <EmbeddedResource Include="Unicode/CompositionExclusions-16.0.0.txt" />
+        <EmbeddedResource Include="Unicode/LICENSE.txt" />
+        <None Update="Unicode/LICENSE.txt" TargetPath="ThirdParty/Unicode-LICENSE.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Pack="true" PackagePath="licenses/Unicode-LICENSE.txt" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Gql" />
+    </ItemGroup>
+</Project>

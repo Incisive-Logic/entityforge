@@ -1,0 +1,67 @@
+name: Verified performance observations
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: benchmarks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+        with:
+          global-json-file: global.json
+      - name: Test reporting contracts
+        run: ./eng/Test-BenchmarkReports.ps1
+      - name: Record shared runner environment
+        run: |
+          @{
+            classification = 'shared-ci'
+            cpu = ((Get-Content /proc/cpuinfo | Select-String 'model name' | Select-Object -First 1).Line -replace '^.*?:\s*','')
+            memory = (Get-Content /proc/meminfo | Select-String '^MemTotal:').Line
+            storage = (& findmnt -T $env:RUNNER_TEMP -n -o FSTYPE,OPTIONS | Out-String).Trim()
+            backgroundLoad = 'GitHub-hosted runner; external contention is not controlled'
+            topology = 'local embedded, same-process and separate-process HTTP; deployment recorded per result'
+            runnerImage = $env:ImageVersion
+          } | ConvertTo-Json | Set-Content "$env:RUNNER_TEMP/benchmark-environment.json"
+      - name: Run verified smoke workloads
+        run: |
+          ./eng/Invoke-Benchmarks.ps1 `
+            -OutputDirectory "$env:RUNNER_TEMP/benchmark-report" `
+            -ArtifactsPath "$env:RUNNER_TEMP/benchmark-build" `
+            -EnvironmentDescription "$env:RUNNER_TEMP/benchmark-environment.json" `
+            -Suite native-queries,native-mutations,entity-operations,semantic-queries,graphql,native-lifecycle `
+            -Rows 19 -Iterations 5 -Warmup 2 -Clients 2 -Repetitions 1
+      - name: Publish Markdown job summary
+        if: always()
+        run: |
+          $report = "$env:RUNNER_TEMP/benchmark-report/report.md"
+          if (Test-Path $report) {
+            Get-Content $report -Raw | Add-Content $env:GITHUB_STEP_SUMMARY
+          } else {
+            '## Performance run incomplete
+
+            No benchmark report was produced. Inspect the setup/build logs; this is not a performance pass.' | Add-Content $env:GITHUB_STEP_SUMMARY
+          }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: performance-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/benchmark-report/
+          if-no-files-found: warn
+          retention-days: 30

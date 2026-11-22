@@ -1,0 +1,25 @@
+<Project>
+    <Import Project="Version.props" />
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <DebugType>portable</DebugType>
+        <DebugSymbols>True</DebugSymbols>
+        <Company>Incisive Logic</Company>
+    </PropertyGroup>
+    <!--<ItemGroup>
+
+	  <PackageReference Include="StyleCop.Analyzers"
+		  PrivateAssets="all"
+		  IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+		
+  </ItemGroup>-->
+    <PropertyGroup>
+        <Authors>Incisive Logic</Authors>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl Condition="'$(EntityForgeRepositoryUrl)' != ''">$(EntityForgeRepositoryUrl)</RepositoryUrl>
+    </PropertyGroup>
+</Project>

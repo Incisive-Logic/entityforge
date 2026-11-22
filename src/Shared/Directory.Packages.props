@@ -1,0 +1,19 @@
+<Project>
+    <Import Project="../../Directory.Packages.props" />
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageVersion Include="Avalonia" Version="12.1.1" />
+        <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.1" />
+        <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.1.1" />
+        <PackageVersion Include="Google.Protobuf" Version="3.25.1" />
+        <PackageVersion Include="Grpc.Core.Api" Version="2.60.0" />
+        <PackageVersion Include="MSTest" Version="3.9.3" />
+        <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.15" />
+        <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.15" />
+        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+        <PackageVersion Include="Newtonsoft.Json" Version="13.0.4" />
+        <PackageVersion Include="SharpZipLib" Version="1.4.2" />
+    </ItemGroup>
+</Project>

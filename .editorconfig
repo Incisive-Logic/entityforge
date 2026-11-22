@@ -1,0 +1,59 @@
+root = true
+
+[*.{cs,csproj,props,targets}]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.cs]
+csharp_new_line_before_open_brace = all
+csharp_prefer_braces = true:error
+csharp_preserve_single_line_blocks = false
+csharp_preserve_single_line_statements = false
+
+# Shared rules for DB, Studio, AppModel, libraries and tests.
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.DocumentationRules.severity = none
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.LayoutRules.severity = none
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.MaintainabilityRules.severity = none
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.NamingRules.severity = none
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.OrderingRules.severity = none
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.ReadabilityRules.severity = none
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.SpacingRules.severity = none
+dotnet_diagnostic.SA0001.severity = none
+dotnet_diagnostic.SA1028.severity = warning
+dotnet_diagnostic.IDE0011.severity = error
+dotnet_diagnostic.SA1107.severity = error
+dotnet_diagnostic.SA1500.severity = error
+dotnet_diagnostic.SA1501.severity = error
+dotnet_diagnostic.SA1502.severity = error
+dotnet_diagnostic.SA1503.severity = error
+dotnet_diagnostic.SA1516.severity = error
+csharp_style_namespace_declarations = file_scoped:suggestion
+csharp_style_prefer_primary_constructors = false:silent
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:suggestion
+dotnet_diagnostic.IDE0055.severity = warning
+
+[*.md]
+indent_size = 2
+trim_trailing_whitespace = false
+
+# Member ordering remains advisory; do not reorder initialization as a formatting fix.
+[*.cs]
+dotnet_diagnostic.SA1201.severity = suggestion
+dotnet_diagnostic.SA1202.severity = suggestion
+dotnet_diagnostic.SA1203.severity = suggestion
+dotnet_diagnostic.SA1204.severity = suggestion
+dotnet_diagnostic.SA1214.severity = suggestion
+dotnet_diagnostic.SA1215.severity = suggestion
+
+# Preserve generated sources and imported implementation text.
+[*.generated.cs]
+generated_code = true
+[src/Shared/EntityForge.Semantics.Protobuf/SemanticPayload.cs]
+generated_code = true
+[src/Db/EntityForge.Db.Distributed/Hosting/QueryOperator.cs]
+generated_code = true
+[src/Shared/EntityForge.Utility/FastWildcard.cs]
+generated_code = true

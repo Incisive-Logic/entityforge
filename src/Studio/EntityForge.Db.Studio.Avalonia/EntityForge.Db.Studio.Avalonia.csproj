@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Avalonia.AvaloniaEdit" />
+        <PackageReference Include="Avalonia" />
+        <PackageReference Include="Avalonia.Themes.Fluent" />
+        <PackageReference Include="Avalonia.Fonts.Inter" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Studio.Core/EntityForge.Db.Studio.Core.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.UI.Avalonia/EntityForge.UI.Avalonia.csproj" />
+        <ProjectReference Include="../../AppModel/EntityForge.Db.AppModel.Avalonia/EntityForge.Db.AppModel.Avalonia.csproj" />
+        <ProjectReference Include="../../Db/EntityForge.Db.Semantic.Abstractions/EntityForge.Db.Semantic.Abstractions.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Studio.Avalonia.Tests" />
+    </ItemGroup>
+</Project>

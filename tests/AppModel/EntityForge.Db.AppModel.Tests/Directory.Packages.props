@@ -1,0 +1,7 @@
+<Project>
+    <Import Project="..\..\..\Directory.Packages.props" />
+    <ItemGroup>
+        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+        <PackageVersion Include="MSTest" Version="3.9.3" />
+    </ItemGroup>
+</Project>

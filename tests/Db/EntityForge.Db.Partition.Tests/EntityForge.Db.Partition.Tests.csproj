@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Recovery.Worker/EntityForge.Db.Recovery.Worker.csproj" />
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed/EntityForge.Db.Distributed.csproj" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="MSTest" />
+        <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+        <Using Include="EntityForge.Db.Distributed.Hosting" />
+        <Using Include="EntityForge.Db.Distributed.Sharding" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="../EntityForge.Db.Hosting.Tests/BenchmarkScenario.cs" Link="Benchmarks/BenchmarkScenario.cs" />
+        <Compile Include="../EntityForge.Db.Hosting.Tests/WorkloadTaskGroup.cs" Link="Benchmarks/WorkloadTaskGroup.cs" />
+        <Compile Include="../EntityForge.Db.Hosting.Tests/WorkloadResourceSampler.cs" Link="Benchmarks/WorkloadResourceSampler.cs" />
+        <Compile Include="../EntityForge.Db.Hosting.Tests/WorkloadVolume.cs" Link="Benchmarks/WorkloadVolume.cs" />
+        <Compile Include="../EntityForge.Db.Hosting.Tests/WorkloadProcessIo.cs" Link="Benchmarks/WorkloadProcessIo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Gql/EntityForge.Db.Gql.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Query.Adapters/EntityForge.Db.Query.Adapters.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed.Contracts/EntityForge.Db.Distributed.Contracts.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed.Client/EntityForge.Db.Distributed.Client.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../../src/Db/EntityForge.Db.Distributed.Hosting/EntityForge.Db.Distributed.Hosting.csproj" />
+    </ItemGroup>
+</Project>

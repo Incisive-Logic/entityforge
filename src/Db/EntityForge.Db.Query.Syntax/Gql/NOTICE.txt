@@ -1,0 +1,17 @@
+OpenGQL grammar
+Source: https://github.com/opengql/grammar
+Revision: 16ea71bd320ad07fd2c46a3066afbaef7d226922
+Licence: Apache License 2.0 (see LICENSE.txt in this directory).
+
+GQL.g4 is derived from that revision. EntityForge adds the pre-reserved
+WHITESPACE keyword as WHITESPACE_KW, keeping it distinct from the lexer rule
+for whitespace characters. The lexer and parser are
+generated with ANTLR 4.13.1 for C#, without listeners, in namespace
+EntityForge.Db.Query.Syntax.Gql. Generated top-level classes are made internal
+so that implementation details do not become part of the public application API.
+The redundant generated CLSCompliant attributes are removed.
+Use eng/Generate-GqlSyntax.ps1 to regenerate them.
+
+The grammar validates syntax only. Type checking, feature support, execution
+semantics and resource limits require separate validation. Acceptance by this
+grammar does not establish ISO/IEC 39075 conformance.

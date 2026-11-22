@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageDescription>GQL compilation, evaluation and graph execution for EntityForgeDB, independent of ASP.NET hosting.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../EntityForge.Db.Graph/EntityForge.Db.Graph.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Graph.Contracts/EntityForge.Db.Graph.Contracts.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Query.Syntax/EntityForge.Db.Query.Syntax.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Query.Planning/EntityForge.Db.Query.Planning.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Mapping.Runtime/EntityForge.Db.Mapping.Runtime.csproj" />
+        <ProjectReference Include="../EntityForge.Db.Abstractions/EntityForge.Db.Abstractions.csproj" />
+        <ProjectReference Include="../../Shared/EntityForge.Query/EntityForge.Query.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+        <InternalsVisibleTo Include="EntityForge.Db.Gql.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Query.Adapters" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="../EntityForge.Db.Query.Planning/Unicode/LICENSE.txt" Link="licenses/Unicode-LICENSE.txt" Pack="true" PackagePath="licenses/Unicode-LICENSE.txt" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Hosting" />
+    </ItemGroup>
+</Project>

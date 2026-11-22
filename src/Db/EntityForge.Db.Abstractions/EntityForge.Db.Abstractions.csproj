@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <PackageDescription>Representation-neutral EntityForgeDB values, versions, profiles, exceptions, and committed-change contracts.</PackageDescription>
+    </PropertyGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Hosting" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../../Shared/EntityForge.Values/EntityForge.Values.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Engine" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Core" />
+        <InternalsVisibleTo Include="EntityForge.Db.Kernel" />
+        <InternalsVisibleTo Include="EntityForge.Db.Graph" />
+        <InternalsVisibleTo Include="EntityForge.Db.Rdf" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Abstractions" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic" />
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Durability.Abstractions" />
+        <InternalsVisibleTo Include="EntityForge.Db.Storage.Local" />
+        <InternalsVisibleTo Include="EntityForge.Db.Storage.Pages" />
+        <InternalsVisibleTo Include="EntityForge.Db.Tests.WalkingSlice" />
+        <InternalsVisibleTo Include="EntityForge.Db.Prototypes.Visibility.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.Partition.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Graph.Contracts" />
+        <InternalsVisibleTo Include="EntityForge.Db.Rdf.Contracts" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Graph.Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Rdf.Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Semantic.Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Hosting.Tests" />
+        <InternalsVisibleTo Include="EntityForge.Db.LegacyHosting.Tests" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Client" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Mapping.Runtime" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Gql" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Client" />
+        <InternalsVisibleTo Include="EntityForge.Db.Distributed.Hosting" />
+    </ItemGroup>
+</Project>
